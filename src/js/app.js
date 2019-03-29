@@ -1,12 +1,19 @@
 const balances = [523, 6000, 5001, 5013];
 
 const getBalance = (balance) => {
-    let dim = 'балла';
-    if (balance === 6000 || balance === 5013) {
+    let dim;
+    let balanceEnd = balance % 100;
+    if (balanceEnd > 20) {
+        balanceEnd = balanceEnd % 10;
+    }
+    if (balanceEnd === 0 || balanceEnd > 4) {
         dim = 'баллов';
     }
-    else if (balance === 5001) {
-        dim = 'балл'
+    else if (balanceEnd > 1 && balanceEnd <= 4) {
+        dim = 'балла';
+    }
+    else if (balanceEnd === 1) {
+        dim = 'балл';
     }
     return `Ваш баланс: ${balance} ${dim}`;
 };
